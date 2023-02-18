@@ -1,0 +1,26 @@
+1. We add a propType to check only the selected data type (string; here) is only passed on to the dom via the variable  (link1; here)
+                        Header.propTypes = {
+                        link1: PropTypes.string,
+                        }
+
+2. // Helps us pass a default value for the element if we do not give any value in the component file for the variable (link1; here)
+                        Header.defaultProps = {
+                        link1: "Default Value"
+                        }
+
+3. // makes the propValue as mandatory
+                        Header.propTypes = {
+                        link1: PropTypes.string.isRequired
+                        }
+
+4. import React, {useState} from 'react';
+
+        [just in between the return and the begining of the fucntion component, insert]
+                    const [count, setCount] = useState("Hi, Hello");
+
+We cannot normally change the "count's" value , for that we need to use:
+                   setCount("New Hi, New Hello")
+
+                    ||For more info, refer to file {Hero.jsx}||
+
+
