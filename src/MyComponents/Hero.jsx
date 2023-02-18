@@ -72,13 +72,12 @@ function Hero(props) {
         Copy
       </Button>
       {/* use "useState" to create the bug free version of wordcounter */}
-      <p className={`p-2 text-${props.mode==='white'?'black':'white'}`}>
+      <p className={`py-2 text-${props.mode==='white'?'black':'white'}`}>
         Sentence Count : {(text.split(".")).length-1} <br />
         Word Count : {text.split(" ").length-1} <br />
         Character Count : {text.length}
         <br />
       </p>
-      <span></span>
       <hr />
       <h2 className={`text-center text-${props.mode==='white'?'black':'white'}`}>Preview</h2>
       <span className={`text-${props.mode==='white'?'black':'white'}`}>{Math.round(0.008 * text.split(" ").length)} min read</span>

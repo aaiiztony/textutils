@@ -1,16 +1,16 @@
 import PropTypes from 'prop-types';
-import {
-  Link
-} from "react-router-dom";
+// import {
+//   Link
+// } from "react-router-dom";
 
 function Header(props) {
   return (
     // add a logo on the left corner of the nav bar
-  <nav className={`d-flex py-2 justify-content-between bg-${props.mode}`}>
+  <nav className={`shadow d-flex py-2 justify-content-between bg-${props.mode}`}>
   <div className="align-items-center">
-    <Link className={`text-decoration-none mx-2 text-${props.mode==='white'?'primary':'success'}`} to="/">TextUtils</Link>
-    <Link  className={`text-decoration-none text-${props.mode==='white'?'dark':'white'}`}  aria-current="page" to="/about">About</Link>
-    <Link className={`text-decoration-none mx-2 text-${props.mode==='white'?'dark':'white'}`} to="/contact">Contact</Link>
+    <a className={`text-decoration-none mx-2 text-${props.mode==='white'?'primary':'success'}`} href="#">TextUtils</a>
+    <a  className={`text-decoration-none text-${props.mode==='white'?'dark':'white'}`}  aria-current="page" href="#">About</a>
+    <a className={`text-decoration-none mx-2 text-${props.mode==='white'?'dark':'white'}`} href="#">Contact</a>
   </div>
   <div className='form-check form-switch'>
     <input type="checkbox"
