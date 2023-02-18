@@ -3,7 +3,6 @@ import Header from "./MyComponents/Header";
 import Hero from "./MyComponents/Hero";
 import Alert from "./MyComponents/Alert";
 // import Contact from "./MyComponents/Contact";
-// import Contact from "./MyComponents/Contact";
 // import Footer from "./MyComponents/Footer";
 // import About from "./MyComponents/About";
 // import {Routes, Route} from "react-router-dom"

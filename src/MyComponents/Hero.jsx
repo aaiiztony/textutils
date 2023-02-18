@@ -4,17 +4,6 @@ import PropTypes from "prop-types";
 import React, { useState } from "react";
 
 function Hero(props) {
-  // const [myStyle, setMyStyle] = useState({
-  //   color: "black",
-  //   backgroundColor: "white"
-  // })
-  
-  // const [btnInfo, setBtnInfo] = useState("Enable Dark Mode")
-  // const [btnStyle, setBtnStyle] = useState({
-  //   backgroundColor:"black",
-  //   color:"white"
-  // })
-
   function handleOnClickUp() {
     let newText = text.toUpperCase();
     setText(newText);
@@ -25,13 +14,11 @@ function Hero(props) {
     props.showAlert("Cleared the textbox", "success");
   }
   function copyText() {
-    let myBox = document.getElementById('myBox')
-    myBox.select();
-    navigator.clipboard.writeText(myBox.value);
+    navigator.clipboard.writeText(text);
+    document.getSelection().removeAllRanges();
     props.showAlert("Copied to Clipboard", "success");
   }
   function handleOnClickLow() {
-    console.log("Button was clicked");
     let newText = text.toLowerCase();
     setText(newText);
     props.showAlert("Converted to Lowercase", "info");
@@ -42,46 +29,48 @@ function Hero(props) {
   //create a new hook to change the state (react would automatically watch the element)
   const [text, setText] = useState("");
   return (
-    <div className="container space w-75 p-2 space" >
-      <Form.Group className="mb-2">
-        <div className={`d-flex justify-content-between py-2 text-${props.mode==='white'?'black':'white'}`}>
-        <h3 className="px-2">Enter your text to analyse</h3>
+    <div className="container" >
+      <Form.Group className="" >
+        <div className={`d-flex align-items-center justify-content-center text-${props.mode==='white'?'black':'white'}`}>
+        <h3><strong>The Text-Analyser : Text Analysis App</strong></h3>
         </div>
-        <div className="shadow">
+        <div className="d-flex shadow" style={{flexDirection:"column"}}>
         <Form.Control
           as="textarea"
           value={text}
           className={`rounded bg-${props.mode==='black'?'black':'white'} text-${props.mode==='white'?'black':'white'}`}
           style={{resize:"none"}}
-          rows={12}
+          rows={11}
           onChange={handleOnChange}
           id="myBox"
         />
+        <div className="d-flex justify-content-center" style={{flex:"1"}}>
+        <Button disabled={text.length===0} variant="primary my-1 mx-2" onClick={handleOnClickUp}>
+          Convert to {props.upc}
+        </Button>
+        <Button disabled={text.length===0} variant="primary my-1" onClick={handleOnClickLow}>
+          Convert to {props.lwc}
+        </Button>
+        <Button disabled={text.length===0} variant="success my-1 mx-2" onClick={clearField}>
+          Clear
+        </Button>
+        <Button disabled={text.length===0} variant="success my-1" onClick={copyText} >
+          Copy
+        </Button>
+        </div>
         </div>
       </Form.Group>
-      <Button variant="primary my-1 mx-2" onClick={handleOnClickUp}>
-        Convert to {props.upc}
-      </Button>
-      <Button variant="primary my-1" onClick={handleOnClickLow}>
-        Convert to {props.lwc}
-      </Button>
-      <Button variant="success my-1 mx-2" onClick={clearField}>
-        Clear
-      </Button>
-      <Button variant="success my-1" onClick={copyText} >
-        Copy
-      </Button>
       {/* use "useState" to create the bug free version of wordcounter */}
       <p className={`py-2 text-${props.mode==='white'?'black':'white'}`}>
         Sentence Count : {(text.split(".")).length-1} <br />
-        Word Count : {text.split(" ").length-1} <br />
+        Word Count : {text.split(/\s+/).filter((element)=>{return element.length!== 0}).length} <br/>
         Character Count : {text.length}
         <br />
       </p>
       <hr />
       <h2 className={`text-center text-${props.mode==='white'?'black':'white'}`}>Preview</h2>
-      <span className={`text-${props.mode==='white'?'black':'white'}`}>{Math.round(0.008 * text.split(" ").length)} min read</span>
-      <p className={`text-${props.mode==='white'?'black':'white'}`}>{text.length>0?text:"Enter something to preview"}</p>
+      <span className={`text-${props.mode==='white'?'black':'white'}`}>{Math.round(0.008 * text.split(/\s+/).filter((element)=>{return element.length!==0}).length)} min read</span>
+      <p className={`text-${props.mode==='white'?'black':'white'}`}>{text.length>0?text:"Nothing to Preview"}</p>
     </div>
   );
 }
